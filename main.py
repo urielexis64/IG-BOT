@@ -1,5 +1,4 @@
-import sys
-import platform
+import sys, os, platform
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime,
                             QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
@@ -12,8 +11,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-import time
-import threading
+import time, threading
 import login
 import Utilities as utils
 
@@ -71,12 +69,12 @@ class Main(QMainWindow):
         icon = QIcon()
         if(self.passwordStatus == 0):
             self.ui.passwordTxt.setEchoMode(QLineEdit.Normal)
-            icon.addFile("E:/Documentos/Programación/PYTHON/IG-BOT/ig_bot/assets/show_pass2.png",
+            icon.addFile(resource_path("assets/hide_pass.png"),
                         QSize(), QIcon.Normal, QIcon.On)
             self.passwordStatus = 1
         else:
             self.ui.passwordTxt.setEchoMode(QLineEdit.Password)
-            icon.addFile("E:/Documentos/Programación/PYTHON/IG-BOT/ig_bot/assets/show_pass1.png",
+            icon.addFile(resource_path('assets/show_pass.png'),
                         QSize(), QIcon.Normal, QIcon.On)
             self.passwordStatus = 0
         self.ui.showPass.setIcon(icon)
@@ -106,6 +104,15 @@ class Main(QMainWindow):
             self.close()
         except:
             pass
+
+#* Get absolute path to resource (PyInstaller)
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
