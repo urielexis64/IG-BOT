@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LoginScreen</class>
+ <widget class="QMainWindow" name="LoginScreen">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>350</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>10</number>
+    </property>
+    <property name="topMargin">
+     <number>10</number>
+    </property>
+    <property name="rightMargin">
+     <number>10</number>
+    </property>
+    <property name="bottomMargin">
+     <number>10</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="dropShadowFrame">
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame{
+	background-color: qlineargradient(spread:pad, x1:0.5, y1:0, x2:0.506, y2:1, stop:0 rgba(69, 45, 93, 255), stop:1 rgba(35, 38, 79, 255));
+	border-radius: 10px;
+	color: rgb(240,240,240);
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="igLogo">
+       <property name="geometry">
+        <rect>
+         <x>65</x>
+         <y>20</y>
+         <width>75</width>
+         <height>75</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>assets/ig_logo.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="createdByLbl">
+       <property name="geometry">
+        <rect>
+         <x>-1</x>
+         <y>340</y>
+         <width>331</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Gotham Pro Light</family>
+         <stylestrategy>PreferAntialias</stylestrategy>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(0,0,0,0);
+</string>
+       </property>
+       <property name="text">
+        <string>&lt;a href=&quot;http://www.github.com/urielexis64&quot;&gt;&lt;font color=white&gt;Created by urielexis64&lt;/a&gt;&lt;/font&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="openExternalLinks">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="usernameLbl">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>130</y>
+         <width>80</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>Username</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="usernameTxt">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>133</y>
+         <width>150</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border-radius:10px;
+}</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Username</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="passwordLbl">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>180</y>
+         <width>80</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>Password</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="passwordTxt">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>183</y>
+         <width>150</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	border-radius: 10px;
+}</string>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="dragEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="placeholderText">
+        <string>Password</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="loginBtn">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>230</y>
+         <width>230</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Gotham Pro Black</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(62, 67, 153, 255), stop:1 rgba(136, 37, 147, 255));
+border-radius: 15px;
+color: white;
+}</string>
+       </property>
+       <property name="text">
+        <string>LOGIN</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normalon>assets/login.png</normalon>
+        </iconset>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="closeBtn">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>10</y>
+         <width>16</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>close</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+border: none;
+border-radius: 8px;
+background-color: rgb(255, 76, 76);
+
+}
+
+QPushButton:hover{
+background-color: rgb(255, 76, 76, 150);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="minimizeBtn">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>10</y>
+         <width>16</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>minimize</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	border: none;
+	border-radius: 8px;
+	background-color: rgb(255, 255, 142)
+}
+
+QPushButton:hover{
+	background-color: rgb(255, 255, 142, 150);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="igBotLbl">
+       <property name="geometry">
+        <rect>
+         <x>145</x>
+         <y>20</y>
+         <width>120</width>
+         <height>75</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Gotham Pro</family>
+         <pointsize>14</pointsize>
+         <stylestrategy>PreferAntialias</stylestrategy>
+        </font>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;IG &lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;BOT&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="showPass">
+       <property name="geometry">
+        <rect>
+         <x>284</x>
+         <y>180</y>
+         <width>30</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normalon>assets/show_pass1.png</normalon>
+        </iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
