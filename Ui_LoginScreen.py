@@ -12,7 +12,6 @@ from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
-
 class Ui_LoginScreen(object):
     def setupUi(self, LoginScreen):
         if not LoginScreen.objectName():
@@ -42,7 +41,7 @@ class Ui_LoginScreen(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.igLogo.sizePolicy().hasHeightForWidth())
         self.igLogo.setSizePolicy(sizePolicy)
-        self.igLogo.setPixmap(QPixmap(u"assets/ig_logo.png"))
+        self.igLogo.setPixmap(QPixmap("E:/Documentos/Programación/PYTHON/IG-BOT/ig_bot/assets/ig_logo.png"))
         self.igLogo.setScaledContents(True)
         self.igLogo.setAlignment(Qt.AlignCenter)
         self.createdByLbl = QLabel(self.dropShadowFrame)
@@ -106,7 +105,7 @@ class Ui_LoginScreen(object):
 "color: white;\n"
 "}")
         icon = QIcon()
-        icon.addFile(u"assets/login.png", QSize(), QIcon.Normal, QIcon.On)
+        icon.addFile("E:/Documentos/Programación/PYTHON/IG-BOT/ig_bot/assets/login.png", QSize(), QIcon.Normal, QIcon.On)
         self.loginBtn.setIcon(icon)
         self.closeBtn = QPushButton(self.dropShadowFrame)
         self.closeBtn.setObjectName(u"closeBtn")
@@ -152,7 +151,7 @@ class Ui_LoginScreen(object):
         self.showPass.setCursor(QCursor(Qt.PointingHandCursor))
         self.showPass.setStyleSheet(u"background-color: rgba(255, 255, 255, 0);")
         icon1 = QIcon()
-        icon1.addFile(u"assets/show_pass1.png", QSize(), QIcon.Normal, QIcon.On)
+        icon1.addFile("E:/Documentos/Programación/PYTHON/IG-BOT/ig_bot/assets/show_pass1.png", QSize(), QIcon.Normal, QIcon.On)
         self.showPass.setIcon(icon1)
         self.showPass.setIconSize(QSize(30, 30))
         self.showPass.setCheckable(False)
@@ -186,4 +185,3 @@ class Ui_LoginScreen(object):
         self.igBotLbl.setText(QCoreApplication.translate("LoginScreen", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">IG </span><span style=\" font-size:18pt;\">BOT</span></p></body></html>", None))
         self.showPass.setText("")
     # retranslateUi
-

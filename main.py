@@ -4,7 +4,7 @@ from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime,
                             QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase,
-                           QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
+                        QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
 
 from selenium import webdriver
@@ -21,7 +21,7 @@ import Utilities as utils
 from Ui_LoginScreen import Ui_LoginScreen
 
 
-class Main (QMainWindow):
+class Main(QMainWindow):
     # To know if showPassword is on or off. 0 = off | 1 = on
     passwordStatus = 0
 
@@ -71,13 +71,13 @@ class Main (QMainWindow):
         icon = QIcon()
         if(self.passwordStatus == 0):
             self.ui.passwordTxt.setEchoMode(QLineEdit.Normal)
-            icon.addFile(u"assets/show_pass2.png",
-                         QSize(), QIcon.Normal, QIcon.On)
+            icon.addFile("E:/Documentos/Programación/PYTHON/IG-BOT/ig_bot/assets/show_pass2.png",
+                        QSize(), QIcon.Normal, QIcon.On)
             self.passwordStatus = 1
         else:
             self.ui.passwordTxt.setEchoMode(QLineEdit.Password)
-            icon.addFile(u"assets/show_pass1.png",
-                         QSize(), QIcon.Normal, QIcon.On)
+            icon.addFile("E:/Documentos/Programación/PYTHON/IG-BOT/ig_bot/assets/show_pass1.png",
+                        QSize(), QIcon.Normal, QIcon.On)
             self.passwordStatus = 0
         self.ui.showPass.setIcon(icon)
 
@@ -106,7 +106,6 @@ class Main (QMainWindow):
             self.close()
         except:
             pass
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
