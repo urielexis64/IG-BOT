@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from bs4 import BeautifulSoup as b
 import time
 
 class Login:
@@ -13,6 +12,7 @@ class Login:
     
     def signIn(self):
         #Open Instagram website
+        self.driver.maximize_window()
         self.driver.get('https://www.instagram.com/')
 
         #locate Username input text

@@ -1,4 +1,3 @@
-import sys, os, platform
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime,
                             QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
@@ -11,13 +10,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+import sys
 import time, threading
 import login
 import Utilities as utils
+from functions import resource_path
 
-# Splash Screen
+# Login Screen
 from Ui_LoginScreen import Ui_LoginScreen
-
 
 class Main(QMainWindow):
     # To know if showPassword is on or off. 0 = off | 1 = on
@@ -47,12 +47,10 @@ class Main(QMainWindow):
         self.ui.loginBtn.clicked.connect(lambda: self.checkLogin())
         self.ui.showPass.clicked.connect(self.showPassword)
 
-
         def moveWindow(e):
             # Detect if the window is  normal size
             if self.isMaximized() == False:  # Not maximized
                 # Move window only when window is normal size
-                # ###############################################
                 # if left mouse button is clicked (Only accept left mouse button clicks)
                 if e.buttons() == Qt.LeftButton:
                     # Move window
@@ -62,8 +60,10 @@ class Main(QMainWindow):
 
         self.ui.dropShadowFrame.mouseMoveEvent = moveWindow
 
+
     def mousePressEvent(self, event):
         self.clickPosition = event.globalPos()
+
 
     def showPassword(self):
         icon = QIcon()
@@ -98,21 +98,12 @@ class Main(QMainWindow):
         password = self.ui.passwordTxt.text()
 
         try:
-            driver = webdriver.Chrome('..//chromedriver.exe')
+            driver = webdriver.Chrome(resource_path('chromedriver.exe'))
             l = login.Login(driver, username, password)
             l.signIn()
-            self.close()
         except:
             pass
 
-#* Get absolute path to resource (PyInstaller)
-def resource_path(relative_path):
-    try:
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-
-    return os.path.join(base_path, relative_path)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

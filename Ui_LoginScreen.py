@@ -11,7 +11,8 @@
 from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
-import os, sys
+
+from functions import resource_path
 
 class Ui_LoginScreen(object):
     def setupUi(self, LoginScreen):
@@ -42,7 +43,7 @@ class Ui_LoginScreen(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.igLogo.sizePolicy().hasHeightForWidth())
         self.igLogo.setSizePolicy(sizePolicy)
-        self.igLogo.setPixmap(QPixmap(self.resource_path("assets/ig_logo.png")))
+        self.igLogo.setPixmap(QPixmap(resource_path("assets/ig_logo.png")))
         self.igLogo.setScaledContents(True)
         self.igLogo.setAlignment(Qt.AlignCenter)
         self.createdByLbl = QLabel(self.dropShadowFrame)
@@ -106,7 +107,7 @@ class Ui_LoginScreen(object):
 "color: white;\n"
 "}")
         icon = QIcon()
-        icon.addFile(self.resource_path("assets/login.png"), QSize(), QIcon.Normal, QIcon.On)
+        icon.addFile(resource_path("assets/login.png"), QSize(), QIcon.Normal, QIcon.On)
         self.loginBtn.setIcon(icon)
         self.closeBtn = QPushButton(self.dropShadowFrame)
         self.closeBtn.setObjectName(u"closeBtn")
@@ -152,7 +153,7 @@ class Ui_LoginScreen(object):
         self.showPass.setCursor(QCursor(Qt.PointingHandCursor))
         self.showPass.setStyleSheet(u"background-color: rgba(255, 255, 255, 0);")
         icon1 = QIcon()
-        icon1.addFile(self.resource_path("assets/show_pass.png"), QSize(), QIcon.Normal, QIcon.On)
+        icon1.addFile(resource_path("assets/show_pass.png"), QSize(), QIcon.Normal, QIcon.On)
         self.showPass.setIcon(icon1)
         self.showPass.setIconSize(QSize(30, 30))
         self.showPass.setCheckable(False)
@@ -186,11 +187,3 @@ class Ui_LoginScreen(object):
         self.igBotLbl.setText(QCoreApplication.translate("LoginScreen", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">IG </span><span style=\" font-size:18pt;\">BOT</span></p></body></html>", None))
         self.showPass.setText("")
     # retranslateUi
-
-    def resource_path(self, relative_path):
-        try:
-            base_path = sys._MEIPASS
-        except Exception:
-            base_path = os.path.abspath(".")
-
-        return os.path.join(base_path, relative_path)
