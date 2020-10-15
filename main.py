@@ -13,11 +13,11 @@ from selenium.webdriver.support import expected_conditions as EC
 import sys
 import time, threading
 import login
-import Utilities as utils
 from functions import resource_path
 
 # Login Screen
 from Ui_LoginScreen import Ui_LoginScreen
+from main_screen import MainScreen
 
 class Main(QMainWindow):
     # To know if showPassword is on or off. 0 = off | 1 = on
@@ -90,19 +90,23 @@ class Main(QMainWindow):
                                         QMessageBox.Ok)
             self.ui.usernameTxt.setFocus()
         else:
-            threading.Thread(target=self.signin).start()
+            self.signin()
         
         
     def signin(self):
         username = self.ui.usernameTxt.text()
         password = self.ui.passwordTxt.text()
-
         try:
             driver = webdriver.Chrome(resource_path('chromedriver.exe'))
             l = login.Login(driver, username, password)
             l.signIn()
-        except:
-            pass
+
+            # * we show the Main Screen and close the Login Screen
+            self.mainScreen = MainScreen(username, driver)
+            self.mainScreen.show()
+            self.close()
+        except Exception as e:
+            print(e)
 
 
 if __name__ == "__main__":
