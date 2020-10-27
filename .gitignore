@@ -3,3 +3,4 @@ __init__.py
 *.spec
 build
 dist
+.idea
