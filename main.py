@@ -6,18 +6,15 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFo
 from PySide2.QtWidgets import *
 
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 import sys
-import time, threading
 import login
 from functions import resource_path
 
 # Login Screen
 from Ui_LoginScreen import Ui_LoginScreen
 from main_screen import MainScreen
+
 
 class Main(QMainWindow):
     # To know if showPassword is on or off. 0 = off | 1 = on
@@ -49,7 +46,7 @@ class Main(QMainWindow):
 
         def moveWindow(e):
             # Detect if the window is  normal size
-            if self.isMaximized() == False:  # Not maximized
+            if not self.isMaximized():  # Not maximized
                 # Move window only when window is normal size
                 # if left mouse button is clicked (Only accept left mouse button clicks)
                 if e.buttons() == Qt.LeftButton:
@@ -60,39 +57,35 @@ class Main(QMainWindow):
 
         self.ui.dropShadowFrame.mouseMoveEvent = moveWindow
 
-
     def mousePressEvent(self, event):
         self.clickPosition = event.globalPos()
 
-
     def showPassword(self):
         icon = QIcon()
-        if(self.passwordStatus == 0):
+        if self.passwordStatus == 0:
             self.ui.passwordTxt.setEchoMode(QLineEdit.Normal)
             icon.addFile(resource_path("assets/hide_pass.png"),
-                        QSize(), QIcon.Normal, QIcon.On)
+                         QSize(), QIcon.Normal, QIcon.On)
             self.passwordStatus = 1
         else:
             self.ui.passwordTxt.setEchoMode(QLineEdit.Password)
             icon.addFile(resource_path('assets/show_pass.png'),
-                        QSize(), QIcon.Normal, QIcon.On)
+                         QSize(), QIcon.Normal, QIcon.On)
             self.passwordStatus = 0
         self.ui.showPass.setIcon(icon)
-
 
     def checkLogin(self):
         username = self.ui.usernameTxt.text()
         password = self.ui.passwordTxt.text()
 
-        if(len(username.strip()) == 0 or len(password.strip()) == 0):
+        if len(username.strip()) == 0 or len(password.strip()) == 0:
             QMessageBox.information(self, 'Advice',
-                                        "You forgot to write your account info",
-                                        QMessageBox.Ok)
+                                    "You forgot to write your account info",
+                                    QMessageBox.Ok)
             self.ui.usernameTxt.setFocus()
         else:
             self.signin()
-        
-        
+
     def signin(self):
         username = self.ui.usernameTxt.text()
         password = self.ui.passwordTxt.text()
@@ -100,7 +93,6 @@ class Main(QMainWindow):
             driver = webdriver.Chrome(resource_path('chromedriver.exe'))
             l = login.Login(driver, username, password)
             l.signIn()
-
             # * we show the Main Screen and close the Login Screen
             self.mainScreen = MainScreen(username, driver)
             self.mainScreen.show()

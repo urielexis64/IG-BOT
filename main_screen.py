@@ -2,16 +2,9 @@ from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime,
                             QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase,
-                        QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
+                           QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
-import sys
-import time, threading
 import Utilities as utils
 from functions import resource_path
 
@@ -19,9 +12,17 @@ from ui_main_screen import Ui_MainScreen
 
 ut = 0
 
-activeBtnStyle ="QPushButton {\ncolor: rgb(255, 255, 255);\nbackground-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(67, 102, 201, 255), stop:0.517045 rgba(186, 49, 181, 255), stop:1 rgba(230, 71, 110, 255));\nborder: 0px solid;\n}\nQPushButton:hover {\nbackground-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(67, 102, 201, 255), stop:0.517045 rgba(186, 49, 181, 255), stop:1 rgba(230, 71, 110, 255));\n}" 
-                
-inactiveBtnStyle="QPushButton {\ncolor: rgb(255, 255, 255);\nbackground-color: rgb(35,35,35);\nborder: 0px solid;\n}\nQPushButton:hover {\nbackground-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(67, 102, 201, 255), stop:0.517045 rgba(186, 49, 181, 255), stop:1 rgba(230, 71, 110, 255));\n}"
+activeBtnStyle = "QPushButton {\ncolor: rgb(255, 255, 255);\nbackground-color: qlineargradient(spread:pad, x1:0, y1:0, " \
+                 "x2:1, y2:1, stop:0 rgba(67, 102, 201, 255), stop:0.517045 rgba(186, 49, 181, 255), stop:1 rgba(230, " \
+                 "71, 110, 255));\nborder: 0px solid;\n}\nQPushButton:hover {\nbackground-color: qlineargradient(" \
+                 "spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(67, 102, 201, 255), stop:0.517045 rgba(186, 49, 181, " \
+                 "255), stop:1 rgba(230, 71, 110, 255));\n} "
+
+inactiveBtnStyle = "QPushButton {\ncolor: rgb(255, 255, 255);\nbackground-color: rgb(35,35,35);\nborder: 0px " \
+                   "solid;\n}\nQPushButton:hover {\nbackground-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, " \
+                   "y2:1, stop:0 rgba(67, 102, 201, 255), stop:0.517045 rgba(186, 49, 181, 255), stop:1 rgba(230, 71, " \
+                   "110, 255));\n} "
+
 
 class MainScreen(QMainWindow):
 
@@ -62,7 +63,7 @@ class MainScreen(QMainWindow):
 
         def moveWindow(e):
             # Detect if the window is  normal size
-            if self.isMaximized() == False:  # Not maximized
+            if not self.isMaximized():  # Not maximized
                 # Move window only when window is normal size
                 # if left mouse button is clicked (Only accept left mouse button clicks)
                 if e.buttons() == Qt.LeftButton:
@@ -77,7 +78,7 @@ class MainScreen(QMainWindow):
         self.clickPosition = event.globalPos()
 
     def changeSectionBtnState(self, btn):
-        #Reset all the buttons
+        # Reset all the buttons
         self.ui.likeBtnSection.setStyleSheet(inactiveBtnStyle)
         self.ui.messageBtnSection.setStyleSheet(inactiveBtnStyle)
         self.ui.followBtnSection.setStyleSheet(inactiveBtnStyle)
@@ -87,16 +88,13 @@ class MainScreen(QMainWindow):
         self.ui.followBtnSection.setChecked(False)
         self.ui.commentBtnSection.setChecked(False)
 
-        if(not btn.isChecked()):
+        if not btn.isChecked():
             btn.setStyleSheet(activeBtnStyle)
             btn.setChecked(True)
-        
 
 
 def chooseFile():
-    path = QFileDialog.getOpenFileName(caption="Open .txt file",filter="TXT Files (*.txt)")[0]
+    path = QFileDialog.getOpenFileName(caption="Open .txt file", filter="TXT Files (*.txt)")[0]
     links = open(path, 'r')
     for link in links:
-        ut.like(link)
-
-
+        ut.like(link.split(" ")[1])
